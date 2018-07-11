@@ -1,0 +1,52 @@
+<div class="addUser">
+ 
+  <div style="padding-top:10px">
+  <form class="form-horizontal"  [formGroup]="addUserForm" (ngSubmit)="onFormSubmit()" >
+    <div class="form-group">
+      <label class="control-label col-sm-2" style="
+      padding-left:2px; text-align:left " for="task">FirstName:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="firstname"
+         id="firstname" placeholder="Enter First Name " formControlName = "FirstName">
+      </div>
+      <div class="help-block" *ngIf="addUserForm.controls.FirstName.invalid && formSubmitted">
+        FirstName is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" style="
+      padding-left:2px; text-align:left " for="task">LastName:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="lastname"
+         id="lastname" placeholder="Enter Last Name " formControlName = "LastName">
+      </div>
+      <div class="help-block" *ngIf="addUserForm.controls.LastName.invalid && formSubmitted">
+        LastName is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" style="
+      padding-left:2px; text-align:left " for="task">EmployeeId:</label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control" name="empid"
+         id="empid" formControlName = "EmployeeId">
+      </div>
+      <div class="help-block" *ngIf="addUserForm.controls.EmployeeId.invalid && formSubmitted">
+        EmployeeId is required
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="col-sm-3">
+
+      </div>
+      <div class="col-sm-3">
+          <input type="submit" value="Add User" style="background:grey ;font-weight:bolder" class="btn  form-control">
+      </div>
+      <div class="col-sm-3">
+        <input type="button" (click) = Reset() value="Reset" style="background:grey ;font-weight:bolder; border: 1px; border-color: black" class="btn  form-control">
+    </div>
+    </div>
+  </form>
+</div>
+</div>
