@@ -41,12 +41,52 @@
 
       </div>
       <div class="col-sm-3">
-          <input type="submit" value="Add User" style="background:grey ;font-weight:bolder" class="btn  form-control">
+          <input type="submit" value={{btnText}} style="background: lightgray ;font-weight:bolder" class="btn  form-control">
       </div>
       <div class="col-sm-3">
-        <input type="button" (click) = Reset() value="Reset" style="background:grey ;font-weight:bolder; border: 1px; border-color: black" class="btn  form-control">
+        <input type="button" (click) = Reset() value="Reset" style="background:lightgray ;font-weight:bolder; border: 1px; border-color: black" class="btn  form-control">
     </div>
     </div>
   </form>
 </div>
 </div>
+
+<ul class="list-group">
+  <li class="list-group-item"  *ngFor="let user of users" >
+    <div class="form-horizontal">
+      <div class="form-group">
+        <div class="col-sm-6">
+          <input type="text" class="form-control" name="fname" value="{{user.FirstName}}" [disabled]="true"
+           id="fname" >
+        </div>
+        <div class="col-sm-3">
+          <input type="button" (click) = Update(user) value="Edit" style="background: lightgrey ;font-weight:bolder; border: 1px; border-color: black"  class="btn  form-control">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-6">
+          <input type="text" class="form-control" name="lname" value="{{user.LastName}}" [disabled]="true"
+           id="lname" >
+        </div>
+        <div class="col-sm-3">
+          <input type="button" (click) = Delete(user.User_ID) value="Delete" style="background: lightgrey ;font-weight:bolder; border: 1px; border-color: black"  class="btn  form-control">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-6">
+          <input type="text" class="form-control" name="emp" value="{{user.EmployeeId}}" [disabled]="true"
+           id="emp" >
+        </div>
+       
+      </div>
+    
+      </div>
+      
+      
+  </li>
+  
+    
+ 
+</ul>

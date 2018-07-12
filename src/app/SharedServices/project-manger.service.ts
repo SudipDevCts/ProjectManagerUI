@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserModel } from '../Model/User';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,9 @@ export class ProjectMangerService {
     );
   }
 
-  GetUser(userObj: UserModel) {
-    return this.http.get(this.requestUrl + 'GetUser');
+  GetUser() {
+    return this.http
+    .get<any[]>(this.requestUrl + 'GetUser')
+    .pipe(map(data => data));
   }
 }
