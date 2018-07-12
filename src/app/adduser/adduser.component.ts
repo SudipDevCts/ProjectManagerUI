@@ -19,6 +19,7 @@ export class AdduserComponent implements OnInit {
   userModel: UserModel ;
   btnText: string;
   isUpdating: boolean;
+  userId: number;
   ngOnInit() {
 
     this.addUserForm = new FormGroup ({
@@ -39,7 +40,8 @@ this.Initialize();
       if (!this.isUpdating) {
         this.projectManagerService.AddUser(this.userModel).subscribe(result => {this.Initialize(); });
       } else {
-        this.Reset();
+        this.userModel.User_ID = this.userId;
+        this.projectManagerService.UpdateUser(this.userModel).subscribe(result => {this.Reset(); });
       }
     }
   }
@@ -65,8 +67,14 @@ this.Initialize();
       EmployeeId: new FormControl( user.EmployeeId, Validators.required)
 });
 
+
 this.btnText = 'Update User';
 this.isUpdating = true;
+this.userId = user.User_ID;
+  }
+
+  Delete(id: number) {
+    this.projectManagerService.DeleteUser(id).subscribe(result => {this.Reset(); });
   }
 
 }

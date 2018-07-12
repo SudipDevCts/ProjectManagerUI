@@ -15,9 +15,18 @@ export class ProjectMangerService {
     );
   }
 
+  UpdateUser(userObj: UserModel) {
+    return this.http.post(this.requestUrl + 'UpdateUser', (userObj)
+    );
+  }
+
   GetUser() {
     return this.http
     .get<any[]>(this.requestUrl + 'GetUser')
     .pipe(map(data => data));
+  }
+  DeleteUser(userId: number) {
+    return this.http.delete(this.requestUrl + 'DeleteUser/' + userId
+  );
   }
 }
