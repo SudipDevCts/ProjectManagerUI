@@ -8,6 +8,7 @@ import { AdduserComponent } from './adduser/adduser.component';
 import { ViewtaskComponent } from './viewtask/viewtask.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SearchFilterPipe } from './SharedPipes/search-filter.pipe';
 
 
 const appRoutes: Routes = [
@@ -21,7 +22,8 @@ const appRoutes: Routes = [
     AppComponent,
     MenuComponent,
     AdduserComponent,
-    ViewtaskComponent
+    ViewtaskComponent,
+    SearchFilterPipe
   ],
   imports: [
     BrowserModule,

@@ -20,6 +20,7 @@ export class AdduserComponent implements OnInit {
   btnText: string;
   isUpdating: boolean;
   userId: number;
+  query: string;
   ngOnInit() {
 
     this.addUserForm = new FormGroup ({

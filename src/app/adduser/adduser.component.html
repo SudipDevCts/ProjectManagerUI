@@ -5,7 +5,7 @@
     <div class="form-group">
       <label class="control-label col-sm-2" style="
       padding-left:2px; text-align:left " for="task">FirstName:</label>
-      <div class="col-sm-10">
+      <div class="col-sm-10"> 
         <input type="text" class="form-control" name="firstname"
          id="firstname" placeholder="Enter First Name " formControlName = "FirstName">
       </div>
@@ -50,9 +50,29 @@
   </form>
 </div>
 </div>
-
+<div class="form-horizontal">
+<div class="form-group">
+  <div class="col-sm-4">
+    <input type="text" class="form-control" placeholder="Search" [(ngModel)]="query" id="listSearch">
+  </div>
+  <div>
+    <div class="col-sm-2" style="text-align: end">
+        Sort:
+    </div>
+    <div class="col-sm-2">
+     <input type="button" value="FirstName" class="btn-default form-control" >
+  </div>
+  <div class="col-sm-2">
+    <input type="button" value="LastName" class="btn-default form-control" >
+</div>
+<div class="col-sm-2">
+  <input type="button" value="ID" class="btn-default  form-control" >
+</div>
+  </div>
+</div>
+</div>
 <ul class="list-group">
-  <li class="list-group-item"  *ngFor="let user of users" >
+  <li class="list-group-item"  *ngFor="let user of users | searchFilter : query" >
     <div class="form-horizontal">
       <div class="form-group">
         <div class="col-sm-6">
