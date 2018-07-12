@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserModel } from '../Model/User';
+import { ProjectMangerService } from '../SharedServices/project-manger.service';
 
 @Component({
   selector: 'app-adduser',
@@ -9,7 +10,9 @@ import { UserModel } from '../Model/User';
 })
 export class AdduserComponent implements OnInit {
 
-  constructor() { }
+  constructor(private projectManagerService: ProjectMangerService) {
+    this.userModel = {FirstName: '', LastName: '', EmployeeId: 0};
+   }
   addUserForm: FormGroup;
   formSubmitted = false;
   userModel: UserModel ;
@@ -28,7 +31,7 @@ export class AdduserComponent implements OnInit {
       this.userModel.FirstName = this.addUserForm.value.FirstName;
       this.userModel.LastName = this.addUserForm.value.LastName;
       this.userModel.EmployeeId = this.addUserForm.value.EmployeeId;
-      // this.addTaskService.AddTask(this.userModel).subscribe(result => {this.router.navigate(['']); });
+      this.projectManagerService.AddUser(this.userModel).subscribe(result => {});
     }
   }
   Reset() {

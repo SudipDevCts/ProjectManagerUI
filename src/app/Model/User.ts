@@ -1,5 +1,5 @@
 export class UserModel {
     FirstName: string;
-    LastName: number;
+    LastName: string;
     EmployeeId: number;
 }

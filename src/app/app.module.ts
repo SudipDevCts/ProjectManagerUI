@@ -7,6 +7,7 @@ import { MenuComponent } from './menu/menu.component';
 import { AdduserComponent } from './adduser/adduser.component';
 import { ViewtaskComponent } from './viewtask/viewtask.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const appRoutes: Routes = [
@@ -27,6 +28,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
