@@ -60,19 +60,19 @@
         Sort:
     </div>
     <div class="col-sm-2">
-     <input type="button" value="FirstName" class="btn-default form-control" >
+     <input type="button" value="FirstName" (click)= "SortData('FirstName')"  class="btn-default form-control" >
   </div>
   <div class="col-sm-2">
-    <input type="button" value="LastName" class="btn-default form-control" >
+    <input type="button" value="LastName" (click)= "SortData('LastName')" class="btn-default form-control" >
 </div>
 <div class="col-sm-2">
-  <input type="button" value="ID" class="btn-default  form-control" >
+  <input type="button" value="ID" (click)= "SortData('EmployeeId')" class="btn-default  form-control" >
 </div>
   </div>
 </div>
 </div>
 <ul class="list-group">
-  <li class="list-group-item"  *ngFor="let user of users | searchFilter : query" >
+  <li class="list-group-item"  *ngFor="let user of users | searchFilter : query| sortFilter : path : order" >
     <div class="form-horizontal">
       <div class="form-group">
         <div class="col-sm-6">

@@ -9,6 +9,7 @@ import { ViewtaskComponent } from './viewtask/viewtask.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchFilterPipe } from './SharedPipes/search-filter.pipe';
+import { SortFilterPipe } from './SharedPipes/sort-filter.pipe';
 
 
 const appRoutes: Routes = [
@@ -23,7 +24,8 @@ const appRoutes: Routes = [
     MenuComponent,
     AdduserComponent,
     ViewtaskComponent,
-    SearchFilterPipe
+    SearchFilterPipe,
+    SortFilterPipe
   ],
   imports: [
     BrowserModule,

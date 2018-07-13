@@ -21,6 +21,8 @@ export class AdduserComponent implements OnInit {
   isUpdating: boolean;
   userId: number;
   query: string;
+  path: string;
+  order = 1;
   ngOnInit() {
 
     this.addUserForm = new FormGroup ({
@@ -76,6 +78,12 @@ this.userId = user.User_ID;
 
   Delete(id: number) {
     this.projectManagerService.DeleteUser(id).subscribe(result => {this.Reset(); });
+  }
+
+  SortData(prop: string) {
+    this.path = prop;
+    this.order = this.order * (-1); // change order
+    return false; // do not reload
   }
 
 }
