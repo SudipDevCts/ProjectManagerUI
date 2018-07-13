@@ -10,10 +10,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchFilterPipe } from './SharedPipes/search-filter.pipe';
 import { SortFilterPipe } from './SharedPipes/sort-filter.pipe';
+import { AddprojectComponent } from './addproject/addproject.component';
 
 
 const appRoutes: Routes = [
   { path: 'AddUser', component: AdduserComponent },
+  { path: 'AddProject', component: AddprojectComponent },
   { path: '', component: ViewtaskComponent },
   { path: '**', component: ViewtaskComponent },
 ];
@@ -25,7 +27,8 @@ const appRoutes: Routes = [
     AdduserComponent,
     ViewtaskComponent,
     SearchFilterPipe,
-    SortFilterPipe
+    SortFilterPipe,
+    AddprojectComponent
   ],
   imports: [
     BrowserModule,
