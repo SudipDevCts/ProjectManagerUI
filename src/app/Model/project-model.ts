@@ -7,4 +7,6 @@ export class ProjectModel {
     EndDate: Date;
     TaskId: number;
     UserId: number;
+    TaskCount: number;
+    CompletedTasks: number;
 }

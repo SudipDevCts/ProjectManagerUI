@@ -25,6 +25,9 @@ export class AddprojectComponent implements OnInit {
   project: ProjectModel;
   btnText = 'Add';
   projects: ProjectModel[];
+  query: string;
+  path: string;
+  order = 1;
 
 
   ngOnInit() {
@@ -72,7 +75,7 @@ this.Initialize();
     this.formSubmitted = true;
     if (!this.addProjectForm.invalid) {
       this.project = { Project_ID: 0, Project: '', Priority: 0, StartDate: new Date(),
-         EndDate: new Date(), SetDate: false, UserId: 0, TaskId: null};
+         EndDate: new Date(), SetDate: false, UserId: 0, TaskId: null, TaskCount: 0, CompletedTasks: 0};
       this.project.Project = this.addProjectForm.value.ProjectName;
       this.project.Priority = this.addProjectForm.value.Priority;
       this.project.StartDate = this.addProjectForm.value.StartDate;
@@ -89,4 +92,9 @@ this.Initialize();
     Initialize() {
        this.projectManagerService.GetProject().subscribe(result => {this.projects = result; });
     }
+  SortData(prop: string) {
+    this.path = prop;
+    this.order = this.order * (-1); // change order
+    return false; // do not reload
+  }
 }
