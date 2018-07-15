@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialogModule, MatDialogRef} from '@angular/material';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material';
+import { ProjectMangerService } from '../SharedServices/project-manger.service';
+import { UserModel } from '../Model/User';
 
 @Component({
   selector: 'app-user-pop-up',
@@ -8,9 +10,25 @@ import {MatDialogModule, MatDialogRef} from '@angular/material';
 })
 export class UserPopUpComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(public dialModalRef: MatDialogRef<UserPopUpComponent>, private projectManagerService: ProjectMangerService ) {
+    this.user = {User_ID: 0, FirstName: '', LastName: '', EmployeeId: 0};
+   }
+  users: UserModel[] ;
+  user: UserModel;
   ngOnInit() {
+    this.Initialize();
   }
 
+ Initialize() {
+  this.projectManagerService.GetUser().subscribe(
+    restItems => {
+      this.users = restItems;
+    }
+  );
+ }
+
+ Select(user: any) {
+  this.user = user;
+  this.dialModalRef.close(this.user);
+ }
 }
