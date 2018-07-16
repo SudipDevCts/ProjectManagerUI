@@ -21,6 +21,11 @@ export class ProjectMangerService {
     );
   }
 
+  UpdateProject(project: ProjectModel) {
+    return this.http.post(this.requestUrl + 'UpdateProject', (project)
+    );
+  }
+
   UpdateUser(userObj: UserModel) {
     return this.http.post(this.requestUrl + 'UpdateUser', (userObj)
     );
@@ -36,9 +41,19 @@ export class ProjectMangerService {
   );
   }
 
+  GetSpecificUser (userId: number) {
+    return this.http
+    .get<UserModel>(this.requestUrl + 'User/' + userId)
+    .pipe(map(data => data));
+}
+
   GetProject() {
     return this.http
     .get<any[]>(this.requestUrl + 'GetProject')
     .pipe(map(data => data));
+  }
+
+  EndProject(prj: ProjectModel) {
+    return this.http.put(this.requestUrl + 'EndProject', prj);
   }
 }
