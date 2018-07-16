@@ -14,11 +14,13 @@ import { SearchFilterPipe } from './SharedPipes/search-filter.pipe';
 import { SortFilterPipe } from './SharedPipes/sort-filter.pipe';
 import { AddprojectComponent } from './addproject/addproject.component';
 import { UserPopUpComponent } from './user-pop-up/user-pop-up.component';
+import { AddTaskComponent } from './add-task/add-task.component';
 
 
 const appRoutes: Routes = [
   { path: 'AddUser', component: AdduserComponent },
   { path: 'AddProject', component: AddprojectComponent },
+  { path: 'AddTask', component: AddTaskComponent },
   { path: '', component: ViewtaskComponent },
   { path: '**', component: ViewtaskComponent },
 ];
@@ -33,6 +35,7 @@ const appRoutes: Routes = [
     SortFilterPipe,
     AddprojectComponent,
     UserPopUpComponent,
+    AddTaskComponent,
   ],
   imports: [
     BrowserModule,
