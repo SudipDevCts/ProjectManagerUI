@@ -40,7 +40,7 @@ export class AddprojectComponent implements OnInit {
       StartDate: new FormControl({value: new Date().toISOString().substring(0, 10), disabled: !this.isSetDateChecked}, Validators.required),
       // tslint:disable-next-line:max-line-length
       EndDate: new FormControl( {value: new Date(this.enddate).toISOString().substring(0, 10), disabled: !this.isSetDateChecked}, Validators.required),
-      SetDate: new FormControl(this.isSetDateChecked, Validators.required),
+      SetDate: new FormControl(this.isSetDateChecked),
       Priority: new FormControl(0),
       ManagerName: new FormControl({value: '', disabled: true}, Validators.required)
 });
@@ -83,18 +83,38 @@ this.Initialize();
       this.project.StartDate = this.addProjectForm.value.StartDate;
       this.project.EndDate = this.addProjectForm.value.EndDate;
       this.project.SetDate = this.addProjectForm.value.SetDate;
+      if (this.manager) {
       this.project.UserId = this.manager.User_ID;
+      }
       if (!this.isUpdating) {
-      this.projectManagerService.AddProject(this.project).subscribe(result => { this.Initialize(); });
+      this.projectManagerService.AddProject(this.project).subscribe(result => { this.Initialize();
+        alert('Project has been added'); });
+      this.addProjectForm.reset();
+      this.btnText = 'Add';
+      this.addProjectForm.patchValue({SetDate : true, StartDate: new Date().toISOString().substring(0, 10),
+                  EndDate: new Date(this.enddate).toISOString().substring(0, 10) } );
+      this.isUpdating = false;
+      this.manager = null;
     } else {
       this.project.Project_ID = this.projectId;
-      this.projectManagerService.UpdateProject(this.project).subscribe(result => { this.Initialize(); });
+      this.projectManagerService.UpdateProject(this.project).subscribe(result => { this.Initialize();
+        alert('Project has been updated'); });
+      this.Reset();
+      this.btnText = 'Add';
+      this.addProjectForm.patchValue({SetDate : true, StartDate: new Date().toISOString().substring(0, 10),
+                  EndDate: new Date(this.enddate).toISOString().substring(0, 10) } );
+      this.isUpdating = false;
     }
 
     }
     }
     Reset() {
       this.addProjectForm.reset();
+      this.btnText = 'Add';
+      this.addProjectForm.patchValue({SetDate : true, StartDate: new Date().toISOString().substring(0, 10),
+                  EndDate: new Date(this.enddate).toISOString().substring(0, 10) } );
+      this.isUpdating = false;
+      this.manager = null;
       // this.Initialize();
     }
     Suspend(prj: ProjectModel) {
@@ -121,6 +141,7 @@ this.Initialize();
     }
     Initialize() {
        this.projectManagerService.GetProject().subscribe(result => {this.projects = result; });
+       this.manager = null;
     }
   SortData(prop: string) {
     this.path = prop;
