@@ -1,3 +1,87 @@
-<p>
-  viewtask works!
-</p>
+<div class="form-horizontal">
+    <div class="form-group">
+      <div class="col-sm-3">
+        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="query" id="listSearch">
+      </div>
+      <div>
+        <div class="col-sm-1" style="text-align: end">
+            Sort:
+        </div>
+        <div class="col-sm-2">
+         <input type="button" value="StartDate" (click)= "SortData('StartDate')"  class="btn-default form-control" >
+      </div>
+      <div class="col-sm-2">
+        <input type="button" value="EndDate" (click)= "SortData('EndDate')" class="btn-default form-control" >
+    </div>
+    <div class="col-sm-2">
+      <input type="button" value="Priority" (click)= "SortData('Priority')" class="btn-default  form-control" >
+    </div>
+    <div class="col-sm-2">
+        <input type="button" value="Completed" (click)= "SortData('Completed')" class="btn-default  form-control" >
+      </div>
+      </div>
+    </div>
+    </div>
+
+<ul class="list-group">
+    <li class="list-group-item"  *ngFor="let task of tasks | searchFilter : query" >
+      <div class="form-horizontal">
+        <div class="form-group">
+     
+             <table class="table">
+               <tr>
+                 <th>
+                   Task
+                 </th>
+                 <th> 
+                  Parent Task
+                </th>
+                <th>
+                  Priority
+                </th>
+                <th>
+                  Start 
+                </th>
+                <th>
+                  End
+                </th>
+               </tr>
+               <tr>
+                 <td> 
+                <div class="jumbotron">
+                   {{task.Task}}
+                 </div>
+                </td>
+                <td>
+                  <div class="jumbotron">
+                  {{task.ParentTask}}
+                </div>
+                </td>
+                <td>
+                    {{task.Priority}}
+                </td>
+                <td>
+                      {{task.StartDate}}
+                </td>
+                <td>
+                    {{task.EndDate}}
+              </td>
+              <td>
+                  <button class="button" [disabled]="!task.IsEditable" (click)= EditTask(task.TaskId) >Edit</button>
+              </td>
+              <td>
+                  <button (click)= EndTask(task.TaskId) [disabled]="!task.IsEditable" class="button">EndTask</button>
+              </td>
+               </tr>
+             </table>
+              
+            
+        </div>
+      
+        </div>
+        
+    </li>
+    
+      
+   
+  </ul>
