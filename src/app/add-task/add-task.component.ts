@@ -8,6 +8,7 @@ import { UserPopUpComponent } from '../user-pop-up/user-pop-up.component';
 import { UserModel } from '../Model/User';
 import { ParentTask } from '../Model/ParentTask';
 import { ProjectMangerService } from '../SharedServices/project-manger.service';
+import { ParentTasksPopupComponent } from '../parent-tasks-popup/parent-tasks-popup.component';
 
 @Component({
   selector: 'app-add-task',
@@ -77,6 +78,18 @@ OpenUserModal() {
  dialogRef.afterClosed().subscribe(result => {
   this.selectedUser = result;
   this.addTaskForm.patchValue({User : result.FirstName + ' ' + result.LastName});
+ });
+}
+OpenParentTaskModal() {
+  const dialogRef = this.dialog.open(ParentTasksPopupComponent, {
+   width: '600px',
+   height: '400px',
+   position: {left: '30%' },
+   data: ''
+ });
+ dialogRef.afterClosed().subscribe(result => {
+  this.selectedUser = result;
+  this.addTaskForm.patchValue({ParentTask : result.Parent_Task});
  });
 }
 

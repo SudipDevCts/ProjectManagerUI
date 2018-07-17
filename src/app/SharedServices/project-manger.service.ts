@@ -53,7 +53,11 @@ export class ProjectMangerService {
     .get<any[]>(this.requestUrl + 'GetProject')
     .pipe(map(data => data));
   }
-
+  GetParentTask() {
+    return this.http
+    .get<any[]>(this.requestUrl + 'GetParentTasks')
+    .pipe(map(data => data));
+  }
   EndProject(prj: ProjectModel) {
     return this.http.put(this.requestUrl + 'EndProject', prj);
   }

@@ -16,6 +16,7 @@ import { AddprojectComponent } from './addproject/addproject.component';
 import { UserPopUpComponent } from './user-pop-up/user-pop-up.component';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { ProjectSearchComponent } from './project-search/project-search.component';
+import { ParentTasksPopupComponent } from './parent-tasks-popup/parent-tasks-popup.component';
 
 
 const appRoutes: Routes = [
@@ -38,6 +39,7 @@ const appRoutes: Routes = [
     UserPopUpComponent,
     AddTaskComponent,
     ProjectSearchComponent,
+    ParentTasksPopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,7 @@ const appRoutes: Routes = [
     MatDialogModule,
     BrowserAnimationsModule
   ],
-  entryComponents: [ UserPopUpComponent, ProjectSearchComponent ],
+  entryComponents: [ UserPopUpComponent, ProjectSearchComponent, ParentTasksPopupComponent ],
   providers: [],
   bootstrap: [AppComponent]
 })

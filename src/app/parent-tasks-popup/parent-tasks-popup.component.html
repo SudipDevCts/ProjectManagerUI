@@ -1,0 +1,26 @@
+<div class="form-horizontal">
+    <div class="form-group">
+      <div class="col-sm-6">
+        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="query" id="listSearch">
+      </div>
+  </div>
+
+
+<ul class="list-group">
+    <li class="list-group-item"  *ngFor="let ptask of ParentTasks | searchFilter : query| sortFilter : path : order" >
+      <div class="form-horizontal">
+        <div class="form-group">
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="fname" value="{{ptask.Parent_Task}}" [disabled]="true"
+             id="fname" >
+          </div>
+          <div class="col-sm-3">
+            <input type="button" (click) = Select(ptask) value="Select" style="background: lightgrey ;font-weight:bolder; border: 1px; border-color: black"  class="btn  form-control">
+          </div>
+        </div>
+        </div>
+    </li>
+    
+      
+   
+  </ul>
