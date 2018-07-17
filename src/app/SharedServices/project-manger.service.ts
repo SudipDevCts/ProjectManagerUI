@@ -4,6 +4,7 @@ import { UserModel } from '../Model/User';
 import { map } from 'rxjs/operators';
 import { ProjectModel } from '../Model/project-model';
 import { ParentTask } from '../Model/ParentTask';
+import { Task } from '../Model/Task';
 
 @Injectable({
   providedIn: 'root'
@@ -65,5 +66,9 @@ export class ProjectMangerService {
   AddParentTask(pTask: ParentTask) {
     return this.http.post(this.requestUrl + 'AddParentTask', (pTask)
   );
+  }
+
+  AddTask(task: Task) {
+    return this.http.post(this.requestUrl + 'AddTask', (task));
   }
 }
