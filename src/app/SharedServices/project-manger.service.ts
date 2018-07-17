@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserModel } from '../Model/User';
 import { map } from 'rxjs/operators';
 import { ProjectModel } from '../Model/project-model';
+import { ParentTask } from '../Model/ParentTask';
 
 @Injectable({
   providedIn: 'root'
@@ -55,5 +56,10 @@ export class ProjectMangerService {
 
   EndProject(prj: ProjectModel) {
     return this.http.put(this.requestUrl + 'EndProject', prj);
+  }
+
+  AddParentTask(pTask: ParentTask) {
+    return this.http.post(this.requestUrl + 'AddParentTask', (pTask)
+  );
   }
 }

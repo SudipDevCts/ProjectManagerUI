@@ -4,6 +4,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProjectSearchComponent } from '../project-search/project-search.component';
 import { MatDialog } from '@angular/material';
 import { ProjectModel } from '../Model/project-model';
+import { UserPopUpComponent } from '../user-pop-up/user-pop-up.component';
+import { UserModel } from '../Model/User';
+import { ParentTask } from '../Model/ParentTask';
+import { ProjectMangerService } from '../SharedServices/project-manger.service';
 
 @Component({
   selector: 'app-add-task',
@@ -12,22 +16,26 @@ import { ProjectModel } from '../Model/project-model';
 })
 export class AddTaskComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private projectManagerService: ProjectMangerService) { }
   addTaskForm: FormGroup;
   formSubmitted = false;
   taskModel: TaskModel ;
   tasks: TaskModel[] ;
   selectedProject: ProjectModel;
+  selectedUser: UserModel;
   isParentTask: boolean;
+  pTask: ParentTask;
   ngOnInit() {
     this.addTaskForm = new FormGroup ({
       Task: new FormControl('', Validators.required),
-      IsParent: new FormControl(this.isParentTask, Validators.required),
+      IsParent: new FormControl(false, Validators.required),
       ProjectName: new FormControl({value: '', disabled: true}, Validators.required),
-      Priority: new FormControl({value: 1, disabled: this.isParentTask}, Validators.min(1)),
-      ParentTask: new FormControl({value: '', disabled: this.isParentTask}),
-      StartDate: new FormControl({value: '', disabled: this.isParentTask}, Validators.required),
-      EndDate : new FormControl({value: '', disabled: this.isParentTask}, Validators.required)
+      Priority: new FormControl({value: 1, disabled: false}, Validators.min(1)),
+      ParentTask: new FormControl({value: '', disabled: true}),
+      StartDate: new FormControl({value: '', disabled: false}, Validators.required),
+      EndDate : new FormControl({value: '', disabled: false}, Validators.required),
+      User : new FormControl({value: '', disabled: true}, Validators.required)
+
 
 });
 
@@ -35,8 +43,15 @@ export class AddTaskComponent implements OnInit {
 
 setParentTask(e: any) {
   if (e.target.checked) {
+    this.addTaskForm.get('StartDate').disable();
+    this.addTaskForm.get('EndDate').disable();
+    this.addTaskForm.get('Priority').disable();
+    this.addTaskForm.get('ParentTask').disable();
     this.isParentTask = true;
   } else {
+    this.addTaskForm.get('StartDate').enable();
+    this.addTaskForm.get('EndDate').enable();
+    this.addTaskForm.get('Priority').enable();
     this.isParentTask = false;
   }
 }
@@ -51,5 +66,28 @@ OpenModal() {
   this.selectedProject = result;
   this.addTaskForm.patchValue({ProjectName : result.Project});
  });
+}
+OpenUserModal() {
+  const dialogRef = this.dialog.open(UserPopUpComponent, {
+   width: '600px',
+   height: '400px',
+   position: {left: '30%' },
+   data: ''
+ });
+ dialogRef.afterClosed().subscribe(result => {
+  this.selectedUser = result;
+  this.addTaskForm.patchValue({User : result.FirstName + ' ' + result.LastName});
+ });
+}
+
+onFormSubmit() {
+  this.formSubmitted = true;
+  if (this.isParentTask) {
+    if ( !this.addTaskForm.invalid) {
+      this.pTask = {Parent_ID: 0, Parent_Task: this.addTaskForm.value.Task};
+      this.projectManagerService.AddParentTask(this.pTask).subscribe(result => {
+        alert('Parent Task  has been added'); });
+    }
+  }
 }
 }
