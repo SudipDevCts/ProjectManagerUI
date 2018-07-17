@@ -33,9 +33,9 @@ export class AddTaskComponent implements OnInit {
   ngOnInit() {
     this.addTaskForm = new FormGroup ({
       Task: new FormControl('', Validators.required),
-      IsParent: new FormControl(false, Validators.required),
+      IsParent: new FormControl(false),
       ProjectName: new FormControl({value: '', disabled: true}, Validators.required),
-      Priority: new FormControl({value: 1, disabled: false}, Validators.min(1)),
+      Priority: new FormControl({value: 1, disabled: false}, Validators.min(0)),
       ParentTask: new FormControl({value: '', disabled: true}),
       StartDate: new FormControl({value: new Date().toISOString().substring(0, 10), disabled: false}, Validators.required),
       EndDate : new FormControl({value: new Date(this.enddate).toISOString().substring(0, 10), disabled: false}, Validators.required),
@@ -108,13 +108,17 @@ onFormSubmit() {
   } else {
     if (!this.ValidateFormControls() && this.ValidateDates(this.addTaskForm)
        && !this.addTaskForm.invalid) {
+         let parentId = null;
+         if (this.selectedParent && this.selectedParent.Parent_ID) {
+            parentId = this.selectedParent.Parent_ID;
+         }
         const task: Task = {Task_ID: 0, Task: this.addTaskForm.value.Task,
                                 Priority: this.addTaskForm.value.Priority,
                                 StartDate: this.addTaskForm.value.StartDate,
                                 EndDate: this.addTaskForm.value.EndDate,
                                 Project_ID: this.selectedProject.Project_ID,
                                 User_ID: this.selectedUser.User_ID,
-                                Parent_ID: this.selectedParent.Parent_ID};
+                                Parent_ID: parentId};
         this.projectManagerService.AddTask(task).subscribe(result => {
           alert('Task has been added');
           this.Reset();
