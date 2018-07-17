@@ -15,6 +15,7 @@ import { SortFilterPipe } from './SharedPipes/sort-filter.pipe';
 import { AddprojectComponent } from './addproject/addproject.component';
 import { UserPopUpComponent } from './user-pop-up/user-pop-up.component';
 import { AddTaskComponent } from './add-task/add-task.component';
+import { ProjectSearchComponent } from './project-search/project-search.component';
 
 
 const appRoutes: Routes = [
@@ -36,6 +37,7 @@ const appRoutes: Routes = [
     AddprojectComponent,
     UserPopUpComponent,
     AddTaskComponent,
+    ProjectSearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,7 @@ const appRoutes: Routes = [
     MatDialogModule,
     BrowserAnimationsModule
   ],
-  entryComponents: [ UserPopUpComponent ],
+  entryComponents: [ UserPopUpComponent, ProjectSearchComponent ],
   providers: [],
   bootstrap: [AppComponent]
 })
