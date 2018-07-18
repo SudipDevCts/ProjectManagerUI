@@ -12,6 +12,7 @@ import { ParentTasksPopupComponent } from '../parent-tasks-popup/parent-tasks-po
 import { PRIMARY_OUTLET } from '@angular/router';
 import { Task } from '../Model/Task';
 
+
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
@@ -28,7 +29,7 @@ export class AddTaskComponent implements OnInit {
   isParentTask: boolean;
   pTask: ParentTask;
   startdate = new Date();
-  task: Task;
+  task: TaskModel;
   enddate = this.startdate.setDate(this.startdate.getDate() + 1);
   ngOnInit() {
     this.addTaskForm = new FormGroup ({

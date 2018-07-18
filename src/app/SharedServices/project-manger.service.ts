@@ -4,6 +4,7 @@ import { UserModel } from '../Model/User';
 import { map } from 'rxjs/operators';
 import { ProjectModel } from '../Model/project-model';
 import { ParentTask } from '../Model/ParentTask';
+import { TaskModel } from '../Model/task-model';
 import { Task } from '../Model/Task';
 
 @Injectable({
@@ -54,6 +55,12 @@ export class ProjectMangerService {
     .get<any[]>(this.requestUrl + 'GetProject')
     .pipe(map(data => data));
   }
+
+  GetTasks() {
+    return this.http
+    .get<any[]>(this.requestUrl + 'GetTasks')
+    .pipe(map(data => data));
+  }
   GetParentTask() {
     return this.http
     .get<any[]>(this.requestUrl + 'GetParentTasks')
@@ -70,5 +77,9 @@ export class ProjectMangerService {
 
   AddTask(task: Task) {
     return this.http.post(this.requestUrl + 'AddTask', (task));
+  }
+
+  EndTask(task: Task) {
+    return this.http.put(this.requestUrl + 'EndTask', task);
   }
 }
