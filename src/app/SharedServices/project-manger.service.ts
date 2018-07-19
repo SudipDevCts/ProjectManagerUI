@@ -82,4 +82,10 @@ export class ProjectMangerService {
   EndTask(task: Task) {
     return this.http.put(this.requestUrl + 'EndTask', task);
   }
+
+  GetSpecificTask(taskId: number) {
+    return this.http
+    .get<Task>(this.requestUrl + 'Task/' + taskId)
+    .pipe(map(data => data));
+  }
 }

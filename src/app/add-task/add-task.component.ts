@@ -29,7 +29,6 @@ export class AddTaskComponent implements OnInit {
   isParentTask: boolean;
   pTask: ParentTask;
   startdate = new Date();
-  task: TaskModel;
   enddate = this.startdate.setDate(this.startdate.getDate() + 1);
   ngOnInit() {
     this.addTaskForm = new FormGroup ({
@@ -119,7 +118,7 @@ onFormSubmit() {
                                 EndDate: this.addTaskForm.value.EndDate,
                                 Project_ID: this.selectedProject.Project_ID,
                                 User_ID: this.selectedUser.User_ID,
-                                Parent_ID: parentId};
+                                Parent_ID: parentId, Project: '', User: '', ParentTask: ''};
         this.projectManagerService.AddTask(task).subscribe(result => {
           alert('Task has been added');
           this.Reset();

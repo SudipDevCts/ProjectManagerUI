@@ -5,6 +5,7 @@ import { ProjectSearchComponent } from '../project-search/project-search.compone
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { ProjectModel } from '../Model/project-model';
 import { Task } from '../Model/Task';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-viewtask',
@@ -13,7 +14,7 @@ import { Task } from '../Model/Task';
 })
 export class ViewtaskComponent implements OnInit {
 
-  constructor(private dialog: MatDialog, private projectManagerService: ProjectMangerService) { }
+  constructor(private dialog: MatDialog, private projectManagerService: ProjectMangerService, private router: Router) { }
   tasks: Task[];
   selectedProject: ProjectModel;
   ProjectName: string;
@@ -61,6 +62,11 @@ export class ViewtaskComponent implements OnInit {
 
   EndTask(task: Task) {
     this.projectManagerService.EndTask(task).subscribe(item => {this.Initialize(); this.ClearSearch(); });
+  }
+
+  EditTask(task: Task) {
+    this.router.navigate(['Edit', {taskid : task.Task_ID}]);
+
   }
 
 }

@@ -17,12 +17,14 @@ import { UserPopUpComponent } from './user-pop-up/user-pop-up.component';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { ProjectSearchComponent } from './project-search/project-search.component';
 import { ParentTasksPopupComponent } from './parent-tasks-popup/parent-tasks-popup.component';
+import { UpdateTaskComponent } from './update-task/update-task.component';
 
 
 const appRoutes: Routes = [
   { path: 'AddUser', component: AdduserComponent },
   { path: 'AddProject', component: AddprojectComponent },
   { path: 'AddTask', component: AddTaskComponent },
+  { path: 'Edit', component: UpdateTaskComponent },
   { path: '', component: ViewtaskComponent },
   { path: '**', component: ViewtaskComponent },
 ];
@@ -40,6 +42,7 @@ const appRoutes: Routes = [
     AddTaskComponent,
     ProjectSearchComponent,
     ParentTasksPopupComponent,
+    UpdateTaskComponent,
   ],
   imports: [
     BrowserModule,

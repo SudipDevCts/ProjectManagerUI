@@ -7,4 +7,7 @@ export class Task {
     StartDate: string;
     EndDate: string;
     User_ID: number;
+    Project: string;
+    User: string;
+    ParentTask: string;
 }
