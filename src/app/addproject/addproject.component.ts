@@ -95,6 +95,7 @@ this.Initialize();
                   EndDate: new Date(this.enddate).toISOString().substring(0, 10) } );
       this.isUpdating = false;
       this.manager = null;
+      this.formSubmitted = false;
     } else {
       this.project.Project_ID = this.projectId;
       this.projectManagerService.UpdateProject(this.project).subscribe(result => { this.Initialize();
@@ -110,6 +111,7 @@ this.Initialize();
     }
     Reset() {
       this.addProjectForm.reset();
+      this.formSubmitted = false;
       this.btnText = 'Add';
       this.addProjectForm.patchValue({SetDate : true, StartDate: new Date().toISOString().substring(0, 10),
                   EndDate: new Date(this.enddate).toISOString().substring(0, 10) } );

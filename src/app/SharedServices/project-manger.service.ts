@@ -88,4 +88,9 @@ export class ProjectMangerService {
     .get<Task>(this.requestUrl + 'Task/' + taskId)
     .pipe(map(data => data));
   }
+
+  Update(task: Task) {
+    return this.http.post(this.requestUrl + 'UpdateTask', (task)
+    );
+  }
 }

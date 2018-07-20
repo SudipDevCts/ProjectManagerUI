@@ -41,7 +41,7 @@ this.Initialize();
       this.userModel.LastName = this.addUserForm.value.LastName;
       this.userModel.EmployeeId = this.addUserForm.value.EmployeeId;
       if (!this.isUpdating) {
-        this.projectManagerService.AddUser(this.userModel).subscribe(result => {this.Initialize(); });
+        this.projectManagerService.AddUser(this.userModel).subscribe(result => {this.Initialize(); this.Reset(); });
       } else {
         this.userModel.User_ID = this.userId;
         this.projectManagerService.UpdateUser(this.userModel).subscribe(result => {this.Reset(); });
@@ -51,6 +51,7 @@ this.Initialize();
   Reset() {
     this.addUserForm.reset();
     this.Initialize();
+    this.formSubmitted = false;
   }
   Initialize() {
     this.btnText = 'Add User';
