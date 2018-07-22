@@ -15,6 +15,9 @@ export class UserPopUpComponent implements OnInit {
    }
   users: UserModel[] ;
   user: UserModel;
+  path: string;
+  query: string;
+  order = 1;
   ngOnInit() {
     this.Initialize();
   }

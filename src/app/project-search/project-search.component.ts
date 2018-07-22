@@ -12,6 +12,9 @@ export class ProjectSearchComponent implements OnInit {
 
   constructor(private projectManagerService: ProjectMangerService, public dialModalRef: MatDialogRef<ProjectSearchComponent>) { }
   projects: ProjectModel[];
+  path: string;
+  query: string;
+  order = 1;
   ngOnInit() {
     this.projectManagerService.GetProject().subscribe(result => {this.projects = result; });
   }

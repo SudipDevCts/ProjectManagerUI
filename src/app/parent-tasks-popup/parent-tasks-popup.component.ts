@@ -12,6 +12,9 @@ export class ParentTasksPopupComponent implements OnInit {
 
   constructor(private projectManagerService: ProjectMangerService, public dialModalRef: MatDialogRef<ParentTasksPopupComponent>) { }
   ParentTasks: ParentTask[];
+  path: string;
+  query: string;
+  order = 1;
   ngOnInit() {
     this.projectManagerService.GetParentTask().subscribe(result => {this.ParentTasks = result; });
   }

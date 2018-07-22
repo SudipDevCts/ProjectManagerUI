@@ -19,6 +19,7 @@ export class ViewtaskComponent implements OnInit {
   selectedProject: ProjectModel;
   ProjectName: string;
   path: string;
+  query: string;
   order = 1;
   ngOnInit() {
     this.Initialize();
